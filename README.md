@@ -1,7 +1,4 @@
-# Lej en Hund 
-Et lille projekt hvor man kan leje en hund for en dag.
-
-
+cat > Dockerfile << 'EOF'
 # Hvilket image er vores start images
 FROM php:8.2-fpm
 
@@ -37,7 +34,7 @@ COPY nginx-site.conf /etc/nginx/sites-enabled/default
 # Kopier Start Filen til Image
 COPY entrypoint.sh /etc/entrypoint.sh
 
-#Gør entrypoint.sh executable
+# Gør entrypoint.sh executable
 RUN chmod +x /etc/entrypoint.sh
 
 # Det er her alt hvad vi laver med COPY osv. bliver placeret
@@ -51,3 +48,4 @@ EXPOSE 80
 
 # dette udføres hver gang Container startes
 ENTRYPOINT ["/etc/entrypoint.sh"]
+EOF
