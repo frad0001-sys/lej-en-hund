@@ -1,25 +1,6 @@
 # Lej en Hund 
 Et lille projekt hvor man kan leje en hund for en dag.
 
-server {
-    root /var/www/mysite;
-
-    include /etc/nginx/default.d/*.conf;
-
-    index app.php index.php index.html index.htm;
-
-    client_max_body_size 30m;
-
-    location / {
-        try_files $uri $uri/ /app.php$is_args$args;
-    }
-
-    location ~ [^/]\.php(/|$) {
-        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-        # Mitigate https://httpoxy.org/ vulnerabilities
-        fastcgi_param HTTP_PROXY "";
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index app.php;
-        include fastcgi.conf;
-    }
-}
+#!/usr/bin/env bash
+service nginx start
+php-fpm
